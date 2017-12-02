@@ -1,0 +1,1 @@
+phones = ['+79778892185'] #after adding an account, this file should be overwritten
