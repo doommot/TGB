@@ -63,9 +63,9 @@ class account:
 		self.phone=phone
 		self.__log('initialization of account ')
 		self.__client_connect()
-		firstname = random.choice(names.firstnames)
+		firstname = random.choice(data.names.firstnames)
 		self.__log('firstname is chosen ' + firstname)
-		lastname = random.choice(config.lastnames)
+		lastname = random.choice(data.names.lastnames)
 		self.__log('lastname is chosen ' + lastname)
 		self.client.send_code_request(self.phone)
 		self.__log('code is sent')
