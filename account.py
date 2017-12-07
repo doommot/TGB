@@ -26,11 +26,11 @@ class account:
 	def subscribe(self, channel):
 		entity  = self.client.get_entity(channel)
 		self.client(JoinChannelRequest(entity))
-		self.__log('join '+channel)
+		self.__log('joined '+channel)
 
 	def unsubscribe(self, channel):
-		self.client.LeaveChannelRequest(channel)
-		self.__log('join '+channel)
+		self.client(LeaveChannelRequest(self.client.get_entity(channel)))
+		self.__log('left '+channel)
 
 	def send(self, entity, text=None, file=None, force_document=False): #params: username, text(optional), /path/to/the/file.jpg (optional)
 		if(text):
