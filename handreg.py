@@ -17,7 +17,7 @@ for x in range (int(input("How many accs to reg?\n"))):
 
 def save_accounts_list(accounts):#!this will rewrite current list
 	log("saving account list")
-	f=open(config.accountfile,'w')#filename must be in class fields
+	f=open(config.accountfile,'a')#filename must be in class fields
 	for ele in l1:
 		f.write(ele+'\n')
 	f.close()

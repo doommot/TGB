@@ -71,6 +71,25 @@ class account:
 		self.__log('code is sent')
 		self.client.sign_up(input("\nEnter Code:"), firstname, lastname)
 
+	def reg_code_request(self, phone): #if u reg via bot, use firstly request
+		self.phone=phone
+		self.__log('initialization of account ')
+		self.__client_connect()
+		self.client.send_code_request(self.phone)
+		self.__log('code is sent')
+
+	def reg_auto(self, code): #two-step registration.
+		if (not type(code)=="str"):
+			self.__log("code value error")
+			raise ValueError("invalid type of code")
+		firstname = random.choice(data.names.firstnames)
+		self.__log('firstname is chosen ' + firstname)
+		lastname = random.choice(data.names.lastnames)
+		self.__log('lastname is chosen ' + lastname)
+		self.client.sign_up(input(code), firstname, lastname)
+		self.__log("code is entered "+str(code))
+		return firstname+' '+lastname
+
 	def __client_connect(self):
 		session_file_name = self.phone #we will have a +71234567890.session file with all data. It will be needed to connect
 		self.client = TelegramClient(session_file_name, config.api_id, config.api_hash, timeout=timedelta(seconds=30))
